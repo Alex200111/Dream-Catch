@@ -3,6 +3,7 @@ import Login from './Login';
 import Dashboard from './Dashbord';
 import Form from './Formular';
 import Chart from './Chart';
+import Alege from './Alege';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
         <Route path='/dashbord' element={<Dashboard/>}/>
         <Route path='/dashbord/login' element={<Login/>}/>
         <Route path='/dashbord/form' element={<Form/>}/>
-        <Route path='/dashbord/chart' element={<Chart/>}/>
+        <Route path='/dashbord/alege' element={<Alege/>}/>
+        <Route path='/dashbord/alege/chart' element={<Chart/>}/>
       </Routes>
     </Router>
   );

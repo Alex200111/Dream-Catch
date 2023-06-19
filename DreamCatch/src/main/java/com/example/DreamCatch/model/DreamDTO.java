@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -15,5 +17,5 @@ public class DreamDTO {
     private int idUser;
     private String descriere;
     private String tag;
-    private String data;
+    private Date data;
 }

@@ -3,6 +3,8 @@ package com.example.DreamCatch.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,5 +28,5 @@ public class Dream {
     @NonNull
     private String tag;
     @NonNull
-    private String data;
+    private Date data;
 }

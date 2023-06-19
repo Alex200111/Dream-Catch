@@ -1,5 +1,7 @@
 package com.example.DreamCatch.service;
 
+import com.example.DreamCatch.Mediator.AddDreamCommand;
+import com.example.DreamCatch.Mediator.Mediator;
 import com.example.DreamCatch.model.Dream;
 import com.example.DreamCatch.model.DreamDTO;
 import com.example.DreamCatch.model.User;
@@ -14,22 +16,20 @@ import org.springframework.stereotype.Service;
 public class IDreamService implements DreamService{
 
     @Autowired
-    private DreamRepo dreamRepo;
+    private Mediator mediator;
 
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private DreamRepo dreamRepo;
+
     @Override
     public Dream saveDream(DreamDTO dreamDTO){
-        Dream dream=new Dream();
-        dream.setDurata(dreamDTO.getDurata());
-        dream.setEnergie(dreamDTO.getEnergie());
-        dream.setStres(dreamDTO.getStres());
-        dream.setDescriere(dreamDTO.getDescriere());
-        dream.setTag(dreamDTO.getTag());
-        dream.setUser(userRepo.getById(dreamDTO.getIdUser()));
-        dream.setData(dreamDTO.getData());
+        AddDreamCommand command = new AddDreamCommand(dreamDTO.getDurata(), dreamDTO.getEnergie(), dreamDTO.getStres(),
+                dreamDTO.getDescriere(), dreamDTO.getTag(), dreamDTO.getIdUser(),
+                dreamDTO.getData(),userRepo,dreamRepo);
+        return mediator.send(command);
 
-        return dreamRepo.save(dream);
     }
 }

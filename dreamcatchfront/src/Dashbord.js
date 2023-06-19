@@ -12,7 +12,7 @@ export default function Appbar() {
 
   const  handleButton = (item) =>{
     if(item==='Verifica'){
-      navigate('chart');
+      navigate('Alege');
     }else if(item==='Introdu'){
       navigate('form');
     }

@@ -1,5 +1,8 @@
 package com.example.DreamCatch.service;
 
+import com.example.DreamCatch.Mediator.GetUserResponse;
+import com.example.DreamCatch.Mediator.GetUsersQuery;
+import com.example.DreamCatch.Mediator.Mediator;
 import com.example.DreamCatch.model.User;
 import com.example.DreamCatch.model.UserDTO;
 import com.example.DreamCatch.repository.UserRepo;
@@ -18,10 +21,14 @@ public class IUserService implements UserService{
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private Mediator mediator;
+
     @Override
     public User getUserByEmailAndPassword(String username, String password) {
 
-        return userRepo.getUserByEmailAndPassword(username, password);
+        GetUsersQuery query = new GetUsersQuery(username, password);
+        return mediator.send(query).getUser();
     }
 
     @SneakyThrows

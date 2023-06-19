@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom';
 import axios from "axios";
 
 function App() {
+
+  const location = useLocation();
+  const date = location?.state?.date || null;
+  const type = location?.state?.type || "7";
+
   const [image1, setImage1] = useState("");
   const [image2, setImage2] = useState('');
   const [image3, setImage3] = useState("");
-  const linkd='http://localhost:8080/chart/durata/'+localStorage.getItem('idUser');
-  const links='http://localhost:8080/chart/stres/'+localStorage.getItem('idUser');
-  const linke='http://localhost:8080/chart/energie/'+localStorage.getItem('idUser');
+  const linkd='http://localhost:8080/chart/durata/'+localStorage.getItem('idUser')+'/'+date.$d.toString().substring(4,15)+'/'+type;
+  const links='http://localhost:8080/chart/stres/'+localStorage.getItem('idUser')+'/'+date.$d.toString().substring(4,15)+'/'+type;
+  const linke='http://localhost:8080/chart/energie/'+localStorage.getItem('idUser')+'/'+date.$d.toString().substring(4,15)+'/'+type;
 
   useEffect(() => {
     async function fetchData() {

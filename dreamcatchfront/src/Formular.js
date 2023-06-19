@@ -3,6 +3,8 @@ import TextField from '@mui/material/TextField';
 import { Container } from '@mui/system';
 import { Paper } from '@mui/material';
 import { useState } from 'react';
+import { LocalizationProvider, DateField } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import axios from 'axios';
 
 export default function BasicTextFields() {
@@ -99,14 +101,26 @@ export default function BasicTextFields() {
       />
       <br></br>
       <br></br>
-      <TextField id="filled-basic" label="Data" variant="filled"
-      type="text"
+      {/* <DateField label="Data"
       fullWidth 
       onChange={(e) => setData(e.target.value)}
       value={data}
-      autoComplete="off"
       required
+      format="MM-DD-YYYY"
+/> */}
+  <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DateField
+        label="Select a date"
+        variant="filled"
+        autoComplete="off"
+        required
+        value={data}
+        onChange={(newValue) => {
+          setData(newValue);
+        }}
+        renderInput={(params) => <TextField {...params} />}
       />
+    </LocalizationProvider>
       <br></br>
       <br></br>
       <center><button type="submit">Submit</button></center>
